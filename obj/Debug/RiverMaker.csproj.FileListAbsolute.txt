@@ -1,0 +1,14 @@
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\bin\Debug\RiverMaker.exe.config
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\bin\Debug\RiverMaker.exe
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\bin\Debug\RiverMaker.pdb
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker.csprojResolveAssemblyReference.cache
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\View\MainWindow.g.cs
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\App.g.cs
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker_MarkupCompile.cache
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker_MarkupCompile.lref
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\View\MainWindow.baml
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker.g.resources
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker.Properties.Resources.resources
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker.csproj.GenerateResource.Cache
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker.exe
+c:\users\nazar\documents\visual studio 2015\Projects\RiverMaker\RiverMaker\obj\Debug\RiverMaker.pdb
