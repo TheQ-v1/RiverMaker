@@ -8,23 +8,26 @@
         Title="RiverMaker v1.0" Height="350" Width="525" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="199*"/>
-            <RowDefinition Height="120*"/>
+            <RowDefinition Height="260*"/>
+            <RowDefinition Height="59*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="393*"/>
             <ColumnDefinition Width="124*"/>
         </Grid.ColumnDefinitions>
 
-        
-        <Canvas Margin="0,0,10,0" x:Name="canvas" Grid.RowSpan="2"/>
-        <Button x:Name="RefreshBtn" Content="Refresh" Grid.Column="1" Grid.Row="1" Margin="0,2,0,0" Click="RefreshBtn_Click"/>
-        <CheckBox x:Name="ShowDotsCB" Content="Show points" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,10" Height="15" VerticalAlignment="Bottom"/>
-        <CheckBox x:Name="ShowThinChans" Content="Show thin channels" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,30" Height="15" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="ChansToShowThicknessTB" Grid.Column="1" Margin="0,0,0,50" TextWrapping="Wrap" Text="Channel thickness" Height="23" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="PointsCountTB" Grid.Column="1" Margin="0,0,0,78" TextWrapping="Wrap" Text="Points count" Height="23" VerticalAlignment="Bottom"/>
+
+        <Canvas Margin="0,-34,10,34" x:Name="canvas" Grid.RowSpan="2"/>
+        <Button x:Name="RefreshBtn" Content="Refresh" Grid.Column="1" Grid.Row="1" Click="RefreshBtn_Click" Margin="0,1,0,0"/>
+        <CheckBox x:Name="ShowDotsCB" Content="Show points" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,46" Height="15" VerticalAlignment="Bottom" Width="85"/>
+        <CheckBox x:Name="ShowThinChans" Content="Show thin channels" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,66" Height="15" VerticalAlignment="Bottom" Width="122"/>
+        <TextBox x:Name="ChansToShowThicknessTB" Grid.Column="1" Margin="0,0,0,120" TextWrapping="Wrap" Text="Channel thickness" Height="23" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="PointsCountTB" Grid.Column="1" Margin="0,0,0,148" TextWrapping="Wrap" Text="Points count" Height="23" VerticalAlignment="Bottom"/>
         <TextBox x:Name="ImageTB" Grid.Column="1" Height="23" TextWrapping="Wrap" Text="image" VerticalAlignment="Top"/>
-        <Button x:Name="imageSelectBtn" Content="Select image" Grid.Column="1" HorizontalAlignment="Left" Margin="0,28,0,0" VerticalAlignment="Top" Width="124" Click="imageSelectBtn_Click"/>
+        <Button x:Name="imageSelectBtn" Content="Select image" Grid.Column="1" HorizontalAlignment="Left" Margin="0,28,0,0" VerticalAlignment="Top" Width="124" Click="imageSelectBtn_Click" Height="20"/>
+        <CheckBox x:Name="sameLvlCB" Content="Show same level channels" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,26" Height="15" VerticalAlignment="Bottom" Width="124"/>
+        <CheckBox x:Name="ignoreThicknessCB" Content="Ignore water income" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,6" Height="15" VerticalAlignment="Bottom" Width="124"/>
+        <CheckBox x:Name="showLongestRvrCB" Content="Show longest river" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,86" Height="15" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

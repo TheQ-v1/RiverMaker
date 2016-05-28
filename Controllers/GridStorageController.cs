@@ -142,10 +142,107 @@ namespace RiverMaker.Controllers
                 }
             }
 
+            LinkSameLevelPoints();
+
             storage.isLinked = true;
         }
 
-        public double GetB(int numberOfPoints, int width, int height)
+        public void LinkSameLevelPoints()
+        {
+            for(int i = 0; i < b; ++i)
+            {
+                for(int j = 0; j < a; ++j)
+                {
+                    var CurrPoint = storage.points[i * a + j];
+                    PointStorageBase.LinkedPoint pointToLook;
+                    //works only for low points.
+                    if(CurrPoint.Output == null)
+                    {
+                        if (i > 0)
+                        {
+                            if (j > 0)
+                            {
+                                pointToLook = storage.points[(i - 1) * a + j - 1];
+                                if (pointToLook.ThisPoint.Height 
+                                    == CurrPoint.ThisPoint.Height)
+                                {
+                                    CurrPoint.OutputSameLevel.Add(pointToLook);
+                                }
+                            }
+
+                            pointToLook = storage.points[(i - 1) * a + j];
+                            if (pointToLook.ThisPoint.Height 
+                                == CurrPoint.ThisPoint.Height)
+                            {
+                                CurrPoint.OutputSameLevel.Add(pointToLook);
+                            }
+                        }
+
+                        if (j > 0)
+                        {
+                            if (i < b - 1)
+                            {
+                                pointToLook = storage.points[(i + 1) * a + j - 1];
+                                if (pointToLook.ThisPoint.Height
+                                    == CurrPoint.ThisPoint.Height)
+                                {
+                                    CurrPoint.OutputSameLevel.Add(pointToLook);
+                                }
+                            }
+
+                            pointToLook = storage.points[i * a + j - 1];
+                            if (pointToLook.ThisPoint.Height
+                                    == CurrPoint.ThisPoint.Height)
+                            {
+                                CurrPoint.OutputSameLevel.Add(pointToLook);
+                            }
+                        }
+
+                        if (i < b - 1)
+                        {
+                            if (j < a - 1)
+                            {
+                                pointToLook = storage.points[(i + 1) * a + j + 1];
+                                if (pointToLook.ThisPoint.Height
+                                    == CurrPoint.ThisPoint.Height)
+                                {
+                                    CurrPoint.OutputSameLevel.Add(pointToLook);
+                                }
+                            }
+
+                            pointToLook = storage.points[(i + 1) * a + j];
+                            if (pointToLook.ThisPoint.Height
+                                    == CurrPoint.ThisPoint.Height)
+                            {
+                                CurrPoint.OutputSameLevel.Add(pointToLook);
+                            }
+                        }
+
+                        if (j < a - 1)
+                        {
+                            if (i > 0)
+                            {
+                                pointToLook = storage.points[(i - 1) * a + j + 1];
+                                if (pointToLook.ThisPoint.Height
+                                    == CurrPoint.ThisPoint.Height)
+                                {
+                                    CurrPoint.OutputSameLevel.Add(pointToLook);
+                                }
+                            }
+
+                            pointToLook = storage.points[i * a + j + 1];
+                            if (pointToLook.ThisPoint.Height
+                                    == CurrPoint.ThisPoint.Height)
+                            {
+                                CurrPoint.OutputSameLevel.Add(pointToLook);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private double GetB(int numberOfPoints, int width, int height)
         {
             double discr = Math.Sqrt(
                 Math.Pow(width - height, 2) + 4.0 * width * height * numberOfPoints);
