@@ -29,6 +29,9 @@ namespace RiverMaker
         Bitmap bimage;
         System.Windows.Controls.Image image;
         GridStorageController cnt;
+        Polyline longestRiver;
+        Line selectedPart;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,13 +50,17 @@ namespace RiverMaker
             image.Stretch = Stretch.UniformToFill;
             //canvas.Children.Add(image);
 
+            longestRiver = new Polyline();
+
         }
 
+        //TODO: implement
         private void imageSelectBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
+        //Returns rectangle, which can be drawn somewhere.
         private System.Windows.Shapes.Rectangle getPointToDraw(Models.Point p)
         {
             System.Windows.Shapes.Rectangle res = new System.Windows.Shapes.Rectangle();
@@ -83,6 +90,7 @@ namespace RiverMaker
             }
         }
 
+        //Draws on main canvas accordingly to selected options
         private void setCanvas()
         {
             canvas.Children.Clear();
@@ -111,23 +119,67 @@ namespace RiverMaker
             if(this.showLongestRvrCB.IsChecked == true)
             {
                 var start = cnt.storage.GetLongestRiverInStorage();
-                Polyline p = new Polyline();
+                Polyline pForMainCanvas = new Polyline();
                 
                 while(start != null)
                 {
-                    p.Points.Add(
+                    pForMainCanvas.Points.Add(
                     new System.Windows.Point(start.ThisPoint.X * bimage.Width, start.ThisPoint.Y * bimage.Height)
                     );
+
                     start = start.Output;
                 }
 
-                p.StrokeThickness = 4;
-                p.Stroke = System.Windows.Media.Brushes.Red;
+                pForMainCanvas.StrokeThickness = 4;
+                pForMainCanvas.Stroke = System.Windows.Media.Brushes.Red;
 
-                canvas.Children.Add(p);
+                canvas.Children.Add(pForMainCanvas);
             }
         }
 
+        //Draws on river canvas when "show river" option is selected. 
+        //Also fills combobox for river parts.
+        private void setRiverCanvas()
+        {
+            if (this.showLongestRvrCB.IsChecked == true)
+            {
+                var start = cnt.storage.GetLongestRiverInStorage();
+
+                riverCanvas.Children.Clear();
+                this.partSelectionComB.Items.Clear();
+
+                longestRiver = new Polyline();
+
+                int counter = 0;
+                while (start != null)
+                {
+                    longestRiver.Points.Add(
+                    new System.Windows.Point(
+                        start.ThisPoint.X * riverCanvas.ActualWidth,
+                        start.ThisPoint.Y * riverCanvas.ActualHeight)
+                    );
+
+                    this.partSelectionComB.Items.Add(counter);
+                    TextBlock tb = new TextBlock();
+                    tb.Text = counter.ToString();
+                    tb.FontSize = 10;
+                    tb.Margin = new Thickness(start.ThisPoint.X * riverCanvas.ActualWidth,
+                        start.ThisPoint.Y * riverCanvas.ActualHeight, 0, 0);
+                    riverCanvas.Children.Add(tb);
+                    counter++;
+
+                    start = start.Output;
+                }
+
+                this.partSelectionComB.Items.Remove(counter - 1);
+                longestRiver.StrokeThickness = 4;
+                longestRiver.Stroke = System.Windows.Media.Brushes.Red;
+
+                riverCanvas.Children.Add(longestRiver);
+            }
+        }
+
+        //Draws lines representing rivers on main canvas
         private void makeRivers(double minimalWaterIncome)
         {
             Line l;
@@ -187,6 +239,26 @@ namespace RiverMaker
                 cnt.storage.DefineWaterIncome();
             }
             setCanvas();
+            setRiverCanvas();
+        }
+
+        //Highlights selected part of longest river
+        private void partSelectionComB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            riverCanvas.Children.Remove(selectedPart);
+            selectedPart = new Line();
+
+            selectedPart.X1 = longestRiver.Points[(sender as ComboBox).SelectedIndex].X;
+            selectedPart.Y1 = longestRiver.Points[(sender as ComboBox).SelectedIndex].Y;
+
+            selectedPart.X2 = longestRiver.Points[(sender as ComboBox).SelectedIndex +1].X;
+            selectedPart.Y2 = longestRiver.Points[(sender as ComboBox).SelectedIndex +1].Y;
+
+            selectedPart.Stroke = System.Windows.Media.Brushes.Black;
+            selectedPart.StrokeThickness = longestRiver.StrokeThickness + 2;
+            
+            riverCanvas.Children.Add(selectedPart);
+            solveRiverProblemBtn.IsEnabled = true;
         }
     }
 }
