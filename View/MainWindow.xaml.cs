@@ -165,6 +165,7 @@ namespace RiverMaker
                     tb.FontSize = 10;
                     tb.Margin = new Thickness(start.ThisPoint.X * riverCanvas.ActualWidth,
                         start.ThisPoint.Y * riverCanvas.ActualHeight, 0, 0);
+                    
                     riverCanvas.Children.Add(tb);
                     counter++;
 
@@ -174,7 +175,7 @@ namespace RiverMaker
                 this.partSelectionComB.Items.Remove(counter - 1);
                 longestRiver.StrokeThickness = 4;
                 longestRiver.Stroke = System.Windows.Media.Brushes.Red;
-
+                
                 riverCanvas.Children.Add(longestRiver);
             }
         }
@@ -238,6 +239,7 @@ namespace RiverMaker
                 cnt.LinkPoints();
                 cnt.storage.DefineWaterIncome();
             }
+            this.solveRiverProblemBtn.IsEnabled = false;
             setCanvas();
             setRiverCanvas();
         }
@@ -245,20 +247,23 @@ namespace RiverMaker
         //Highlights selected part of longest river
         private void partSelectionComB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            riverCanvas.Children.Remove(selectedPart);
-            selectedPart = new Line();
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                riverCanvas.Children.Remove(selectedPart);
+                selectedPart = new Line();
 
-            selectedPart.X1 = longestRiver.Points[(sender as ComboBox).SelectedIndex].X;
-            selectedPart.Y1 = longestRiver.Points[(sender as ComboBox).SelectedIndex].Y;
+                selectedPart.X1 = longestRiver.Points[(sender as ComboBox).SelectedIndex].X;
+                selectedPart.Y1 = longestRiver.Points[(sender as ComboBox).SelectedIndex].Y;
 
-            selectedPart.X2 = longestRiver.Points[(sender as ComboBox).SelectedIndex +1].X;
-            selectedPart.Y2 = longestRiver.Points[(sender as ComboBox).SelectedIndex +1].Y;
+                selectedPart.X2 = longestRiver.Points[(sender as ComboBox).SelectedIndex + 1].X;
+                selectedPart.Y2 = longestRiver.Points[(sender as ComboBox).SelectedIndex + 1].Y;
 
-            selectedPart.Stroke = System.Windows.Media.Brushes.Black;
-            selectedPart.StrokeThickness = longestRiver.StrokeThickness + 2;
-            
-            riverCanvas.Children.Add(selectedPart);
-            solveRiverProblemBtn.IsEnabled = true;
+                selectedPart.Stroke = System.Windows.Media.Brushes.Black;
+                selectedPart.StrokeThickness = longestRiver.StrokeThickness + 2;
+
+                riverCanvas.Children.Add(selectedPart);
+                solveRiverProblemBtn.IsEnabled = true;
+            }
         }
     }
 }

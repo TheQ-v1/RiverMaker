@@ -30,7 +30,7 @@
         <CheckBox x:Name="showLongestRvrCB" Content="Show longest river" Grid.Column="1" Margin="0,0,6,131" Height="15" VerticalAlignment="Bottom"/>
         <Canvas Name="riverCanvas" Margin="10,0" Grid.Row="1" Height="105" VerticalAlignment="Bottom"/>
         <ComboBox x:Name="partSelectionComB" Margin="2,0,2,83" Grid.Row="1" Height="22" VerticalAlignment="Bottom" RenderTransformOrigin="1.292,0.409" Grid.Column="1" SelectionChanged="partSelectionComB_SelectionChanged"/>
-        <Button x:Name="solveRiverProblemBtn" Content="Solve problem" Grid.Column="1" Margin="2,37,0,0" Grid.Row="1" IsEnabled="False"/>
+        <Button x:Name="solveRiverProblemBtn" Content="Solve problem" Grid.Column="1" Margin="2,0,0,0" Grid.Row="1" IsEnabled="False" Height="78" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
